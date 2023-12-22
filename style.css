@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: hsl(0, 0%, 98%);
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Public Sans', sans-serif;
+}
+h4 {
+  font-size: 14px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+h6 {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+header {
+  display: flex;
+  width: 99vw;
+  height: 5vw;
+  justify-content: space-between;
+  padding: 0 5vw;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+}
+#which-country {
+  font-size: 30px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+#darkmode {
+  display: flex;
+  justify-content: space-between;
+}
+#darkmode-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+#filter-block {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 0px 50px;
+  margin: 0px auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+#search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+#search-logo {
+  width: 25px;
+  height: 25px;
+  border: none;
+  margin-left: 10px;
+}
+#search {
+  width: 350px;
+  height: 35px;
+  border: none;
+  margin-left: 10px;
+}
+
+#search:focus {
+  outline: none;
+}
+select {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: none;
+  padding: 10px;
+}
+option:nth-child(1) {
+  color: #999;
+}
+#container {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-grow: 0px 50px;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
+.country-card {
+  width: 320px;
+  margin: 50px 0px;
+  background-color: white;
+  padding-bottom: 30px;
+}
+.country-card-img {
+  width: 320px;
+  height: 200px;
+}
+.country-card-name {
+  margin: 10px 20px;
+}
+.country-card-population,
+.country-card-region,
+.country-card-capital {
+  display: flex;
+  align-items: baseline;
+  margin: 10px 20px;
+}
+
+@media only screen and (max-width: 550px) and (min-width: 300px) {
+  header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  h6 {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  #which-country {
+    font-size: 15px;
+  }
+  #darkmode {
+    display: flex;
+    align-items: center;
+  }
+  #darkmode-img {
+    width: 20px;
+    height: 20px;
+  }
+  #search-bar {
+    width: 90vw;
+    margin-bottom: 50px;
+  }
+  #container {
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    width: 90vw;
+  }
+
+  .country-card-img,
+  .country-card {
+    width: 300px;
+  }
+}
