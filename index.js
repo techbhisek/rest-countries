@@ -123,6 +123,64 @@ document.addEventListener('DOMContentLoaded', (e) => {
       setMode();
     }
   });
+
+  let div = document.getElementById('country-info-container');
+  let container = document.getElementById('container');
+  let data = document.getElementById('country-data');
+  let displayer = document.getElementById('displayer');
+
+  container.addEventListener('click', (e) => {
+    arr.forEach((country) => {
+      if (
+        country.name.common ==
+        e.target.parentElement.children[1].innerText
+      ) {
+        data.innerHTML = `<img id="display-img" src='${
+          country.flags.png
+        }'>
+        <div class="contain">
+        <section id="country-name" class="country-card-population"><h3>${
+          country.name.common
+        }</h3></section>
+        <div id="info">
+        
+        <section class="country-card-population"><h4>Population:    </h4><span>${
+          country.population
+        }</span></section>
+        <section class="country-card-population"><h4>Region:    </h4><span>${
+          country.region
+        }</span></section>
+        <section class="country-card-population"><h4>Capital:   </h4><span>${
+          country.capital
+        }</span></section>
+        <section class="country-card-population"><h4>Sub Region:    </h4><span>${
+          country.subregion
+        }</span></section>
+        <section class="country-card-population" ><h4>Top Level Domain:   </h4><span>${
+          country.topleveldomain
+        }</span></section>
+        <section class="country-card-population" ><h4>Curriencies: </h4><span>${currency(
+          country.currencies
+        )}</span></section>
+        <section class="country-card-population" ><h4>Languages: </h4><span>${language(
+          country.languages
+        )}</span></section>
+
+        </div> 
+        </div>
+        
+        
+        `;
+
+        div.style.display = 'block';
+        displayer.style.display = 'none';
+      }
+    });
+  });
+  let back = document.getElementById('back');
+  back.addEventListener('click', (e) => {
+    backbutton();
+  });
 });
 
 function modechange(BodyColor, ElementColor, textColor) {
@@ -147,4 +205,35 @@ function modechange(BodyColor, ElementColor, textColor) {
     arr[index].style.backgroundColor = ElementColor;
     arr[index].style.color = textColor;
   }
+  document.getElementById('back').style.backgroundColor =
+    ElementColor;
+  document.getElementById('back').style.color = textColor;
+  document.getElementById(
+    'country-info-container'
+  ).style.backgroundColor = BodyColor;
+
+  document.getElementById('country-data').style.backgroundColor =
+    BodyColor;
+}
+function backbutton() {
+  let div = document.getElementById('country-info-container');
+  let displayer = document.getElementById('displayer');
+
+  div.style.display = 'none';
+  displayer.style.display = 'block';
+}
+
+function currency(data) {
+  let s = '';
+  for (let key in data) {
+    s += data[key].name;
+  }
+  return '  ' + s;
+}
+function language(data) {
+  let str = '';
+  for (let key in data) {
+    str = str + ',' + data[key];
+  }
+  return '     ' + str;
 }

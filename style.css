@@ -117,7 +117,48 @@ option:nth-child(1) {
   align-items: baseline;
   margin: 10px 20px;
 }
-
+#country-info-container {
+  width: 100vw;
+  height: 90vh;
+  position: absolute;
+  background-color: white;
+  display: none;
+  box-sizing: border-box;
+}
+#country-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 100px auto;
+}
+#info {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 200px;
+}
+#country-name {
+  font-size: 60px;
+  font-weight: 800;
+}
+#display-img {
+  width: 35vw;
+  height: 40vh;
+}
+contain {
+  height: 50vh;
+}
+#back {
+  width: 100px;
+  height: 30px;
+  background: none;
+  margin: 20px 100px;
+  color: hsl(0, 4%, 26%);
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
 @media only screen and (max-width: 550px) and (min-width: 300px) {
   header {
     height: 50px;

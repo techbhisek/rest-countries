@@ -44,45 +44,51 @@
         <h6 id="darkmode-heading">Dark Mode</h6>
       </div>
     </header>
-    <section id="filter-block">
-      <div id="search-bar">
-        <svg
-          id="search-logo"
-          xmlns="http://www.w3.org/2000/svg"
-          class="ionicon"
-          viewBox="0 0 512 512"
-        >
-          <path
-            d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-            fill="none"
-            stroke="currentColor"
-            stroke-miterlimit="10"
-            stroke-width="32"
+    <div id="country-info-container">
+      <button id="back">back</button>
+      <div id="country-data"></div>
+    </div>
+    <div id="displayer">
+      <section id="filter-block">
+        <div id="search-bar">
+          <svg
+            id="search-logo"
+            xmlns="http://www.w3.org/2000/svg"
+            class="ionicon"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+              fill="none"
+              stroke="currentColor"
+              stroke-miterlimit="10"
+              stroke-width="32"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              d="M338.29 338.29L448 448"
+            />
+          </svg>
+          <input
+            id="search"
+            type="search"
+            placeholder="search for the country..."
           />
-          <path
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            stroke-width="32"
-            d="M338.29 338.29L448 448"
-          />
-        </svg>
-        <input
-          id="search"
-          type="search"
-          placeholder="search for the country..."
-        />
-      </div>
-      <select id="filter-select">
-        <option value="">Filter with region</option>
-        <option>Asia</option>
-        <option>Africa</option>
-        <option>Americas</option>
-        <option>Europe</option>
-        <option>Oceania</option>
-      </select>
-    </section>
-    <section id="container"></section>
+        </div>
+        <select id="filter-select">
+          <option value="">Filter with region</option>
+          <option>Asia</option>
+          <option>Africa</option>
+          <option>Americas</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+      </section>
+      <section id="container"></section>
+    </div>
   </body>
 </html>
