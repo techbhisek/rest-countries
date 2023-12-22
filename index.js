@@ -65,11 +65,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
   select.addEventListener('change', (e) => {
     let container = document.getElementById('container');
     container.innerHTML = '';
-    arr.forEach((element) => {
-      if (element.region == select.value) {
+    if (select.value == '') {
+      arr.forEach((element) => {
         render(element);
-      }
-    });
+      });
+    } else {
+      arr.forEach((element) => {
+        if (element.region == select.value) {
+          render(element);
+        }
+      });
+    }
     if (flag == 1) {
       modechange('hsl(207, 26%, 17%)', 'hsl(209, 23%, 22%)', 'white');
     } else {
@@ -98,7 +104,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         modechange('hsl(0, 0%, 98%)', 'white', 'black');
       }
     });
-    //   }
   });
 
   let flag = 0;
