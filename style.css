@@ -98,13 +98,13 @@ option:nth-child(1) {
   box-sizing: border-box;
 }
 .country-card {
-  width: 330px;
+  width: 32px;
   margin: 50px 0px;
   background-color: white;
   padding-bottom: 30px;
 }
 .country-card-img {
-  width: 350px;
+  width: 320px;
   height: 200px;
 }
 .country-card-name {
