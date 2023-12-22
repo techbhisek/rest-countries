@@ -98,7 +98,7 @@ option:nth-child(1) {
   box-sizing: border-box;
 }
 .country-card {
-  width: 32px;
+  width: 320px;
   margin: 50px 0px;
   background-color: white;
   padding-bottom: 30px;
