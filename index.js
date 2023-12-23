@@ -233,6 +233,7 @@ function detailsRender(e) {
       data.innerHTML = `<img id="display-img" src='${
         country.flags.png
       }'>
+      <section id="details-container">
       <div class="contain">
       <section id="country-name" class="country-card-population"><h3>${
         country.name.common
@@ -258,13 +259,14 @@ function detailsRender(e) {
       <section class="country-card-population" ><h4>Languages: </h4><span>${language(
         country.languages
       )}</span></section>
+      
+      </div> 
       <div id="border-countrys">
       <h4>Border Countries :</h4>
        ${buttonRender(country.borders)}
       </div>
-      </div> 
-      
       </div>
+      </section>
       `;
 
       div.style.display = 'block';
