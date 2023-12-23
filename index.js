@@ -9,6 +9,9 @@ fetch(' https://restcountries.com/v3.1/all ')
   .then((data) => {
     arr = data;
     data.forEach((element) => {
+      if (element.name.common == 'France') {
+        console.log(element);
+      }
       render(element);
     });
   });
@@ -62,27 +65,45 @@ function render(country) {
 
 document.addEventListener('DOMContentLoaded', (e) => {
   let select = document.getElementById('filter-select');
+  let search = document.getElementById('search');
   select.addEventListener('change', (e) => {
     let container = document.getElementById('container');
     container.innerHTML = '';
+
     if (select.value == '') {
       arr.forEach((element) => {
-        render(element);
-      });
-    } else {
-      arr.forEach((element) => {
-        if (element.region == select.value) {
+        if (
+          element.name.common
+            .toLowerCase()
+            .includes(search.value.toLowerCase())
+        ) {
           render(element);
         }
       });
+    } else {
+      arr.forEach((element) => {
+        if (
+          element.name.common
+            .toLowerCase()
+            .includes(search.value.toLowerCase())
+        ) {
+          if (element.region == select.value) {
+            render(element);
+          }
+        }
+      });
     }
+    if (container.innerHTML == '') {
+      container.innerHTML = `<h1 class="no-country-found">NO COUNTRY FOUND IN THIS REGION</h1>`;
+    }
+
     if (flag == 1) {
       modechange('hsl(207, 26%, 17%)', 'hsl(209, 23%, 22%)', 'white');
     } else {
       modechange('hsl(0, 0%, 98%)', 'white', 'black');
     }
   });
-  let search = document.getElementById('search');
+
   search.addEventListener('keyup', (e) => {
     let container = document.getElementById('container');
     container.innerHTML = '';
@@ -92,7 +113,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
           .toLowerCase()
           .includes(search.value.toLowerCase())
       ) {
-        render(element);
+        if (select.value == '') {
+          render(element);
+        }
+        if (select.value == element.region) {
+          render(element);
+        }
       }
       if (flag == 1) {
         modechange(
@@ -104,6 +130,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
         modechange('hsl(0, 0%, 98%)', 'white', 'black');
       }
     });
+    if (container.innerHTML == '') {
+      container.innerHTML = `<h1 class="no-country-found">NO COUNTRY FOUND IN THIS REGION</h1>`;
+    }
   });
 
   let flag = 0;
@@ -129,54 +158,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   let data = document.getElementById('country-data');
   let displayer = document.getElementById('displayer');
 
-  container.addEventListener('click', (e) => {
-    arr.forEach((country) => {
-      if (
-        country.name.common ==
-        e.target.parentElement.children[1].innerText
-      ) {
-        data.innerHTML = `<img id="display-img" src='${
-          country.flags.png
-        }'>
-        <div class="contain">
-        <section id="country-name" class="country-card-population"><h3>${
-          country.name.common
-        }</h3></section>
-        <div id="info">
-        
-        <section class="country-card-population"><h4>Population:    </h4><span>${
-          country.population
-        }</span></section>
-        <section class="country-card-population"><h4>Region:    </h4><span>${
-          country.region
-        }</span></section>
-        <section class="country-card-population"><h4>Capital:   </h4><span>${
-          country.capital
-        }</span></section>
-        <section class="country-card-population"><h4>Sub Region:    </h4><span>${
-          country.subregion
-        }</span></section>
-        <section class="country-card-population" ><h4>Top Level Domain:   </h4><span>${
-          country.topleveldomain
-        }</span></section>
-        <section class="country-card-population" ><h4>Curriencies: </h4><span>${currency(
-          country.currencies
-        )}</span></section>
-        <section class="country-card-population" ><h4>Languages: </h4><span>${language(
-          country.languages
-        )}</span></section>
-
-        </div> 
-        </div>
-        
-        
-        `;
-
-        div.style.display = 'block';
-        displayer.style.display = 'none';
-      }
-    });
-  });
+  container.addEventListener('click', detailsRender);
   let back = document.getElementById('back');
   back.addEventListener('click', (e) => {
     backbutton();
@@ -236,4 +218,75 @@ function language(data) {
     str = str + ',' + data[key];
   }
   return '     ' + str;
+}
+
+function detailsRender(e) {
+  let div = document.getElementById('country-info-container');
+  let data = document.getElementById('country-data');
+  let displayer = document.getElementById('displayer');
+
+  arr.forEach((country) => {
+    if (
+      country.name.common ==
+      e.target.parentElement.children[1].innerText
+    ) {
+      data.innerHTML = `<img id="display-img" src='${
+        country.flags.png
+      }'>
+      <div class="contain">
+      <section id="country-name" class="country-card-population"><h3>${
+        country.name.common
+      }</h3></section>
+      <div id="info">
+      <section class="country-card-population"><h4>Native name:    </h4><span>${country.altSpellings[1].toLowerCase()}</span></section>
+      <section class="country-card-population"><h4>Population:    </h4><span>${
+        country.population
+      }</span></section>
+      <section class="country-card-population"><h4>Region:    </h4><span>${
+        country.region
+      }</span></section>
+      <section class="country-card-population"><h4>Capital:   </h4><span>${
+        country.capital
+      }</span></section>
+      <section class="country-card-population"><h4>Sub Region:    </h4><span>${
+        country.subregion
+      }</span></section>
+      <section id="country-info-div" class="country-card-population" ><h4>Top Level Domain:   </h4><span>.${country.altSpellings[0].toLowerCase()}</span></section>
+      <section class="country-card-population" ><h4>Curriencies: </h4><span>${currency(
+        country.currencies
+      )}</span></section>
+      <section class="country-card-population" ><h4>Languages: </h4><span>${language(
+        country.languages
+      )}</span></section>
+      <div id="border-countrys">
+      <h4>Border Countries :</h4>
+       ${buttonRender(country.borders)}
+      </div>
+      </div> 
+      
+      </div>
+      `;
+
+      div.style.display = 'block';
+      displayer.style.display = 'none';
+    }
+  });
+}
+
+function buttonRender(array) {
+  if (array != undefined) {
+    let str = '';
+    let button = document.createElement('button');
+    array.forEach((element) => {
+      button.innerText = element;
+      arr.forEach((country) => {
+        if (element == country.cca3) {
+          console.log(country.cca3);
+          str = str + `<button>${country.name.common}</button>`;
+        }
+      });
+    });
+    return str;
+  }
+  return 'no borders';
 }

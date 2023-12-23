@@ -8,21 +8,22 @@ body {
   font-family: 'Public Sans', sans-serif;
 }
 h4 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 h3 {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
 }
 h6 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
 }
-
+#darkmode:hover {
+  cursor: pointer;
+}
 header {
   display: flex;
-  width: 99vw;
   height: 5vw;
   justify-content: space-between;
   padding: 0 5vw;
@@ -132,7 +133,7 @@ option:nth-child(1) {
   margin: 100px auto;
 }
 #info {
-  width: 50vw;
+  width: 40vw;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -149,6 +150,9 @@ option:nth-child(1) {
 contain {
   height: 50vh;
 }
+span {
+  margin-left: 10px;
+}
 #back {
   width: 100px;
   height: 30px;
@@ -158,6 +162,13 @@ contain {
   border: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
     0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.country-card:hover {
+  cursor: pointer;
+}
+.no-country-found {
+  margin: 100px auto;
+  font-size: 3vw;
 }
 @media only screen and (max-width: 550px) and (min-width: 300px) {
   header {
@@ -200,5 +211,35 @@ contain {
   .country-card-img,
   .country-card {
     width: 300px;
+  }
+
+  #country-data {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0px;
+  }
+  #info {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 200px;
+    margin-top: 50px;
+  }
+  #display-img {
+    width: 90vw;
+    height: 250px;
+  }
+  #country-name {
+    margin-top: 50px;
+  }
+  #country-info-div {
+    margin-top: 50px;
+  }
+  #back {
+    margin-left: 20px;
   }
 }
