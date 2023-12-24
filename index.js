@@ -9,9 +9,6 @@ fetch(' https://restcountries.com/v3.1/all ')
   .then((data) => {
     arr = data;
     data.forEach((element) => {
-      if (element.name.common == 'France') {
-        console.log(element);
-      }
       render(element);
     });
   });
@@ -153,15 +150,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
     }
   });
 
-  let div = document.getElementById('country-info-container');
   let container = document.getElementById('container');
-  let data = document.getElementById('country-data');
-  let displayer = document.getElementById('displayer');
-
   container.addEventListener('click', detailsRender);
   let back = document.getElementById('back');
   back.addEventListener('click', (e) => {
     backbutton();
+  });
+
+  let botton = document.getElementById('country-data');
+  botton.addEventListener('click', (e) => {
+    countryDetails(e.target.innerText);
   });
 });
 
@@ -187,6 +185,16 @@ function modechange(BodyColor, ElementColor, textColor) {
     arr[index].style.backgroundColor = ElementColor;
     arr[index].style.color = textColor;
   }
+
+  let botton = document.getElementsByClassName(
+    'country-border-button'
+  );
+
+  for (let index = 0; index < botton.length; index++) {
+    botton[index].style.backgroundColor = ElementColor;
+    botton[index].style.color = textColor;
+  }
+
   document.getElementById('back').style.backgroundColor =
     ElementColor;
   document.getElementById('back').style.color = textColor;
@@ -197,6 +205,7 @@ function modechange(BodyColor, ElementColor, textColor) {
   document.getElementById('country-data').style.backgroundColor =
     BodyColor;
 }
+
 function backbutton() {
   let div = document.getElementById('country-info-container');
   let displayer = document.getElementById('displayer');
@@ -221,58 +230,7 @@ function language(data) {
 }
 
 function detailsRender(e) {
-  let div = document.getElementById('country-info-container');
-  let data = document.getElementById('country-data');
-  let displayer = document.getElementById('displayer');
-
-  arr.forEach((country) => {
-    if (
-      country.name.common ==
-      e.target.parentElement.children[1].innerText
-    ) {
-      data.innerHTML = `<img id="display-img" src='${
-        country.flags.png
-      }'>
-      <section id="details-container">
-      <div class="contain">
-      <section id="country-name" class="country-card-population"><h3>${
-        country.name.common
-      }</h3></section>
-      <div id="info">
-      <section class="country-card-population"><h4>Native name:    </h4><span>${country.altSpellings[1].toLowerCase()}</span></section>
-      <section class="country-card-population"><h4>Population:    </h4><span>${
-        country.population
-      }</span></section>
-      <section class="country-card-population"><h4>Region:    </h4><span>${
-        country.region
-      }</span></section>
-      <section class="country-card-population"><h4>Capital:   </h4><span>${
-        country.capital
-      }</span></section>
-      <section class="country-card-population"><h4>Sub Region:    </h4><span>${
-        country.subregion
-      }</span></section>
-      <section id="country-info-div" class="country-card-population" ><h4>Top Level Domain:   </h4><span>.${country.altSpellings[0].toLowerCase()}</span></section>
-      <section class="country-card-population" ><h4>Curriencies: </h4><span>${currency(
-        country.currencies
-      )}</span></section>
-      <section class="country-card-population" ><h4>Languages: </h4><span>${language(
-        country.languages
-      )}</span></section>
-      
-      </div> 
-      <div id="border-countrys">
-      <h4>Border Countries :</h4>
-       ${buttonRender(country.borders)}
-      </div>
-      </div>
-      </section>
-      `;
-
-      div.style.display = 'block';
-      displayer.style.display = 'none';
-    }
-  });
+  countryDetails(e.target.parentElement.children[1].innerText);
 }
 
 function buttonRender(array) {
@@ -283,12 +241,66 @@ function buttonRender(array) {
       button.innerText = element;
       arr.forEach((country) => {
         if (element == country.cca3) {
-          console.log(country.cca3);
-          str = str + `<button>${country.name.common}</button>`;
+          str =
+            str +
+            `<button class="country-border-button">${country.name.common}</button>`;
         }
       });
     });
     return str;
   }
   return 'no borders';
+}
+function countryDetails(countryname) {
+  let div = document.getElementById('country-info-container');
+  let data = document.getElementById('country-data');
+  let displayer = document.getElementById('displayer');
+
+  arr.forEach((country) => {
+    if (country.name.common == countryname) {
+      data.innerHTML = `<img id="display-img" src='${
+        country.flags.png
+      }'>
+      <section id="details-container">
+      <div class="contain">
+      <section id="country-name" class="country-card-rows"><h3>${
+        country.name.common
+      }</h3></section>
+      <div id="info">
+      <section class="country-card-rows"><h4>Native name:    </h4><span>${country.cca3.toLowerCase()}</span></section>
+      <section class="country-card-rows"><h4>Population:    </h4><span>${
+        country.population
+      }</span></section>
+      <section class="country-card-rows"><h4>Region:    </h4><span>${
+        country.region
+      }</span></section>
+      <section class="country-card-rows"><h4>Capital:   </h4><span>${
+        country.capital
+      }</span></section>
+      <section class="country-card-rows"><h4>Sub Region:    </h4><span>${
+        country.subregion
+      }</span></section>
+      <section id="country-info-div" class="country-card-rows" ><h4>Top Level Domain:   </h4><span>.${country.altSpellings[0].toLowerCase()}</span></section>
+      <section class="country-card-rows" ><h4>Curriencies: </h4><span>${currency(
+        country.currencies
+      )}</span></section>
+      <section class="country-card-rows" ><h4>Languages: </h4><span>${language(
+        country.languages
+      )}</span></section>
+      
+      </div> 
+      <div id="border-countrys">
+      <h4>Border Countries :</h4>
+      <section id="button-container">
+       ${buttonRender(country.borders)}
+       </section>
+      </div>
+      </div>
+      </section>
+      `;
+
+      div.style.display = 'block';
+      displayer.style.display = 'none';
+    }
+  });
 }

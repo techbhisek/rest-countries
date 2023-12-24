@@ -39,10 +39,11 @@ header {
 #darkmode {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 #darkmode-img {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   margin-right: 10px;
 }
 #filter-block {
@@ -88,6 +89,7 @@ select {
 }
 option:nth-child(1) {
   color: #999;
+  margin-top: 100px;
 }
 #container {
   width: 90vw;
@@ -103,16 +105,19 @@ option:nth-child(1) {
   margin: 50px 0px;
   background-color: white;
   padding-bottom: 30px;
+  border-radius: 5px;
 }
 .country-card-img {
   width: 270px;
   height: 170px;
+  border-radius: 5px 5px 0px 0px;
 }
 .country-card-name {
   margin: 10px 20px;
 }
 .country-card-population,
 .country-card-region,
+.country-card-rows,
 .country-card-capital {
   display: flex;
   align-items: baseline;
@@ -147,7 +152,7 @@ option:nth-child(1) {
   width: 35vw;
   height: 40vh;
 }
-contain {
+#contain {
   height: 50vh;
 }
 span {
@@ -174,14 +179,47 @@ span {
   display: flex;
   flex-direction: column;
 }
+#button-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 30vw;
+  flex-grow: 50px 50px;
+}
+#border-countrys {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 50vw;
+}
+.country-border-button {
+  height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+}
+.country-card-rows {
+  display: flex;
+  align-items: baseline;
+  margin: 10px 0px;
+}
 @media only screen and (max-width: 550px) and (min-width: 300px) {
   header {
     height: 50px;
     display: flex;
     align-items: center;
     width: 100vw;
+    box-sizing: border-box;
   }
 
+  body {
+    box-sizing: border-box;
+  }
   h3 {
     font-size: 20px;
     font-weight: 300;
@@ -245,5 +283,32 @@ span {
   }
   #back {
     margin-left: 20px;
+  }
+
+  #button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    flex-wrap: wrap;
+  }
+  #border-countrys {
+    top: 150px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+    box-sizing: border-box;
+    width: 90vw;
+  }
+  .country-border-button {
+    width: fit-content;
+    height: 30px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.2);
   }
 }
