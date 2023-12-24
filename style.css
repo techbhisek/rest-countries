@@ -195,6 +195,7 @@ span {
 }
 .country-border-button {
   height: 30px;
+  width: 100px;
   padding: 5px;
   box-sizing: border-box;
   background-color: transparent;
@@ -288,8 +289,9 @@ span {
   #button-container {
     display: flex;
     justify-content: space-evenly;
-    width: 100vw;
+    width: 90vw;
     flex-wrap: wrap;
+    box-sizing: border-box;
   }
   #border-countrys {
     top: 150px;

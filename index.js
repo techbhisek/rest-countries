@@ -9,6 +9,9 @@ fetch(' https://restcountries.com/v3.1/all ')
   .then((data) => {
     arr = data;
     data.forEach((element) => {
+      if (element.name.common == 'Belgium') {
+        console.log(element);
+      }
       render(element);
     });
   });
@@ -157,11 +160,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
     backbutton();
   });
 
-  let botton = document.getElementById('country-data');
-  botton.addEventListener('click', (e) => {
+  let button = document.getElementById('country-data');
+  button.addEventListener('click', (e) => {
     countryDetails(e.target.innerText);
   });
 });
+
+/* This function helps in changin the mode */
 
 function modechange(BodyColor, ElementColor, textColor) {
   document.getElementById('moon-icon').style.fill = 'white';
@@ -206,6 +211,8 @@ function modechange(BodyColor, ElementColor, textColor) {
     BodyColor;
 }
 
+/* helps in getting back to main page */
+
 function backbutton() {
   let div = document.getElementById('country-info-container');
   let displayer = document.getElementById('displayer');
@@ -214,6 +221,7 @@ function backbutton() {
   displayer.style.display = 'block';
 }
 
+/* get the list of  curriencies in the country */
 function currency(data) {
   let s = '';
   for (let key in data) {
@@ -221,10 +229,11 @@ function currency(data) {
   }
   return '  ' + s;
 }
+/* get the list of languages */
 function language(data) {
   let str = '';
   for (let key in data) {
-    str = str + ',' + data[key];
+    str = str + data[key] + ',';
   }
   return '     ' + str;
 }
@@ -233,9 +242,12 @@ function detailsRender(e) {
   countryDetails(e.target.parentElement.children[1].innerText);
 }
 
+/* This function is to render all the  country which share the border in the form of a button by convet the cca3 code to name */
 function buttonRender(array) {
   if (array != undefined) {
     let str = '';
+    array.sort();
+
     let button = document.createElement('button');
     array.forEach((element) => {
       button.innerText = element;
@@ -251,6 +263,8 @@ function buttonRender(array) {
   }
   return 'no borders';
 }
+
+/* This function is to render the data of the countries in the details section */
 function countryDetails(countryname) {
   let div = document.getElementById('country-info-container');
   let data = document.getElementById('country-data');
@@ -267,7 +281,9 @@ function countryDetails(countryname) {
         country.name.common
       }</h3></section>
       <div id="info">
-      <section class="country-card-rows"><h4>Native name:    </h4><span>${country.cca3.toLowerCase()}</span></section>
+      <section class="country-card-rows"><h4>Native name:    </h4><span>${native(
+        country
+      )}</span></section>
       <section class="country-card-rows"><h4>Population:    </h4><span>${
         country.population
       }</span></section>
@@ -280,7 +296,7 @@ function countryDetails(countryname) {
       <section class="country-card-rows"><h4>Sub Region:    </h4><span>${
         country.subregion
       }</span></section>
-      <section id="country-info-div" class="country-card-rows" ><h4>Top Level Domain:   </h4><span>.${country.altSpellings[0].toLowerCase()}</span></section>
+      <section id="country-info-div" class="country-card-rows" ><h4>Top Level Domain:   </h4><span>.${country.cca2.toLowerCase()}</span></section>
       <section class="country-card-rows" ><h4>Curriencies: </h4><span>${currency(
         country.currencies
       )}</span></section>
@@ -303,4 +319,11 @@ function countryDetails(countryname) {
       displayer.style.display = 'none';
     }
   });
+}
+
+function native(country) {
+  if (country.altSpellings.length < 2) {
+    return country.name.common;
+  }
+  return country.altSpellings[1];
 }
