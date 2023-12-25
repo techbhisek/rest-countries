@@ -99,7 +99,7 @@ select:focus {
   width: 90vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-grow: 0px 50px;
   margin: 0px auto;
   box-sizing: border-box;
