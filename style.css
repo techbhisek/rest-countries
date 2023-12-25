@@ -8,8 +8,8 @@ body {
   font-family: 'Public Sans', sans-serif;
 }
 h4 {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
 }
 h3 {
   font-size: 25px;
@@ -91,6 +91,10 @@ option:nth-child(1) {
   color: #999;
   margin-top: 100px;
 }
+select:focus {
+  outline: none;
+}
+
 #container {
   width: 90vw;
   display: flex;
@@ -101,19 +105,21 @@ option:nth-child(1) {
   box-sizing: border-box;
 }
 .country-card {
-  width: 270px;
+  width: 320px;
   margin: 50px 0px;
   background-color: white;
   padding-bottom: 30px;
   border-radius: 5px;
 }
 .country-card-img {
-  width: 270px;
-  height: 170px;
+  width: 320px;
+  height: 160px;
   border-radius: 5px 5px 0px 0px;
 }
 .country-card-name {
-  margin: 10px 20px;
+  margin: 20px 20px;
+  font-size: 20px;
+  font-weight: 700;
 }
 .country-card-population,
 .country-card-region,
@@ -137,7 +143,7 @@ option:nth-child(1) {
   justify-content: space-around;
   margin: 100px auto;
 }
-#info {
+#country-info {
   width: 40vw;
   display: flex;
   flex-direction: column;
@@ -157,6 +163,7 @@ option:nth-child(1) {
 }
 span {
   margin-left: 10px;
+  font-size: 14px;
 }
 #back {
   width: 100px;
@@ -264,7 +271,7 @@ span {
     justify-content: space-around;
     margin: 0px;
   }
-  #info {
+  #country-info {
     width: 90vw;
     display: flex;
     flex-direction: column;

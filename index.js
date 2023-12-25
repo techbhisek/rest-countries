@@ -9,9 +9,6 @@ fetch(' https://restcountries.com/v3.1/all ')
   .then((data) => {
     arr = data;
     data.forEach((element) => {
-      if (element.name.common == 'Belgium') {
-        console.log(element);
-      }
       render(element);
     });
   });
@@ -280,7 +277,7 @@ function countryDetails(countryname) {
       <section id="country-name" class="country-card-rows"><h3>${
         country.name.common
       }</h3></section>
-      <div id="info">
+      <div id="country-info">
       <section class="country-card-rows"><h4>Native name:    </h4><span>${native(
         country
       )}</span></section>
